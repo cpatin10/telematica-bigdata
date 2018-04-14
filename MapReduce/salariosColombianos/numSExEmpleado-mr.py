@@ -9,7 +9,7 @@ class SEMeanSalary(MRJob):
         se = set()
         for value in values:
             se.add(value)
-        yield key, se.len()
+        yield key, len(se)
 
 if __name__ == '__main__':
     SEMeanSalary.run()
