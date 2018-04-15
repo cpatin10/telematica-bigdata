@@ -4,7 +4,7 @@ import sys
 class leastValueDay(MRJob):
     def mapper(self, _, line):
         parameters = line.split(',')
-        value = int(parameters[-2])
+        value = float(parameters[-2])
         yield parameters[0], value
 
     def reducer(self, key, values):
