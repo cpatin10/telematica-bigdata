@@ -8,7 +8,7 @@ class GreatestValueDay(MRJob):
         yield parameters[0], value
 
     def reducer(self, key, values):
-        greatestValue = sys.minint
+        greatestValue = - sys.maxint
         for value in values:
             greatestValue = max(greatestValue, value)
         yield key, greatestValue
