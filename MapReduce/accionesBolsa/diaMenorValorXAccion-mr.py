@@ -11,7 +11,7 @@ class leastValueDay(MRJob):
         leastValue = sys.maxint
         for value in values:
             leastValue = min(leastValue, value)
-        yield key, sumSalary/count
+        yield key, leastValue
 
 if __name__ == '__main__':
     leastValueDay.run()
