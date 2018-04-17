@@ -33,7 +33,7 @@ class leastValueDay(MRJob):
         darkDayValue = 0
         darkDay = ""
         for value in values:
-            if value[1] > darkDayValue
+            if value[1] > darkDayValue:
                 darkDayValue = value[1]
                 darkDay = value[0]
         yield darkDay, darkDayValue
