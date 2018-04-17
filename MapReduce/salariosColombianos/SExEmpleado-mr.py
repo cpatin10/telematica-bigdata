@@ -1,5 +1,4 @@
 from mrjob.job import MRJob
-import sys
 
 class SExEmployee(MRJob):
     def mapper(self, _, line):
