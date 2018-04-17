@@ -1,0 +1,14 @@
+from mrjob.job import MRJob
+
+class MoviesXUser(MRJob):
+    def mapper(self, _, line):
+        parameters = line.split(',')
+        rating = float(parameters[-2])
+        yield parameters[0], (1, rating)
+
+    def reducer(self, key, values):
+        totalMovies = sum(values[0])
+        yield key, (totalMovies, values[1]/totalMovies)
+
+if __name__ == '__main__':
+    MoviesXUser.run()
