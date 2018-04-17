@@ -9,7 +9,7 @@ class StableSuperiorActions(MRJob):
 
     def reducer(self, key, values):
         lastValue = -sys.maxint
-        decreasingAction = false
+        decreasingAction = False
         
         for value in values:
             if value < lastValue:
