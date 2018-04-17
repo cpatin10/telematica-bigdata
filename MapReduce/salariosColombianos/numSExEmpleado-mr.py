@@ -3,7 +3,8 @@ from mrjob.job import MRJob
 class SEMeanSalary(MRJob):
     def mapper1(self, _, line):
         parameters = line.split(',')
-        yield parameters[1], parameters[0]
+        se = parameters[0]
+        yield parameters[1], se
 
     def reducer(self, key, values):
         se = set()
