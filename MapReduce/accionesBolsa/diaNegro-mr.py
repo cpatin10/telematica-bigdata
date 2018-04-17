@@ -1,8 +1,9 @@
 from mrjob.job import MRJob
+from mrjob.step import MRStep
 import sys
 
 class leastValueDay(MRJob):
-    
+
     def steps(self):
         return[
             MRStep(mapper = self.mapper1,
