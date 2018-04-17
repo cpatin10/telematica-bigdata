@@ -7,7 +7,9 @@ class MoviesXUser(MRJob):
         yield parameters[0], (1, rating)
 
     def reducer(self, key, values):
-        totalMovies = sum(values[0])
+        totalMovies = 0
+        for value in values:
+            totalMovies += 1
         yield key, (totalMovies, values[1]/totalMovies)
 
 if __name__ == '__main__':
