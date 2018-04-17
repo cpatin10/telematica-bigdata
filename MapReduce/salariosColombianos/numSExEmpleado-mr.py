@@ -1,4 +1,5 @@
 from mrjob.job import MRJob
+import sys
 
 class SEMeanSalary(MRJob):
     def mapper1(self, _, line):
