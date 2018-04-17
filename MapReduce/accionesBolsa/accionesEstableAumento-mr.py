@@ -15,7 +15,7 @@ class StableSuperiorActions(MRJob):
             if value < lastValue:
                 decreasingAction = True
                 break
-            else
+            else:
                 lastValue = value
         if not decreasingAction:
             yield key, leastValue
