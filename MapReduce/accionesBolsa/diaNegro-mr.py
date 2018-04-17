@@ -27,7 +27,7 @@ class leastValueDay(MRJob):
         yield leastValueDate, 1
 
     def reducer2(self, key, values):
-        yield None (key, sum(values))
+        yield None, (key, sum(values))
 
     def reducer3(self, _, values):
         darkDayValue = 0
