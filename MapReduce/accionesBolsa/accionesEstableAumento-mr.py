@@ -18,7 +18,7 @@ class StableSuperiorActions(MRJob):
             else:
                 lastValue = value
         if not decreasingAction:
-            yield key, leastValue
+            yield key, "Accion aumenta/estable"
 
 if __name__ == '__main__':
     StableSuperiorActions.run()
