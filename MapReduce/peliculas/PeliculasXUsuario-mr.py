@@ -10,7 +10,7 @@ class MoviesXUser(MRJob):
         totalMovies = 0
         for value in values:
             totalMovies += 1
-        yield key, totalMovies
+        yield key, values[1]
 
 if __name__ == '__main__':
     MoviesXUser.run()
