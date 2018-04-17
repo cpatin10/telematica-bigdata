@@ -15,7 +15,7 @@ class GreatestValueDay(MRJob):
         yield parameters[-1], 1
 
     def reducer1(self, key, values):
-        yield None (key, sum(values))
+        yield None, (key, sum(values))
 
     def reducer2(self, _, values):
         movieCount = 0
