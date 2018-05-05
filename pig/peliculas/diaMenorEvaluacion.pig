@@ -6,4 +6,4 @@ dia_menor = FOREACH agrupacion_promedio GENERATE promedio_calificacion, MIN(prom
 
 filtro_menor = FILTER agrupacion_promedio BY menor_promedio;
 
-DUMP dia_menor;
+DUMP filtro_menor;
