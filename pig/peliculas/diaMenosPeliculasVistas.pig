@@ -5,10 +5,9 @@ agrupacion_conteo = GROUP conteo_peliculas ALL;
 
 minimo = MIN(conteo_peliculas.conteo);
 
-DUMP minimo;
-/*
-dia_menor = FOREACH agrupacion_conteo GENERATE agrupacion_conteo.group, MIN(conteo_peliculas.conteo);
+/*DUMP minimo;*/
+
+dia_menor = FOREACH agrupacion_conteo GENERATE agrupacion_conteo.group, minimo;
 
 
 DUMP dia_menor;
-*/
