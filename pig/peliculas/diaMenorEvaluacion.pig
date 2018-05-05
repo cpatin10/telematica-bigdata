@@ -2,6 +2,8 @@ registros = LOAD '/user/cpatin10/datasets/peliculas.csv' USING PigStorage(',') A
 agrupacion_dias = GROUP registros BY fecha;
 promedio_calificacion = FOREACH agrupacion_dias GENERATE group, AVG(registros.rating) as promedio;
 
+DUMP promedio_calificacion;
+
 /*
 agrupacion_promedio = GROUP promedio_calificacion ALL;
 
