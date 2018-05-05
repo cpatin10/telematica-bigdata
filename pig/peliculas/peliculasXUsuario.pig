@@ -3,3 +3,4 @@ agrupacion_usuarios = GROUP registros BY user_id;
 peliculas_usuario = FOREACH agrupacion_usuarios GENERATE group, (COUNT(registros), AVG(registros.rating));
 
 DUMP peliculas_usuario;
+STORE peliculas_usuario INTO '/user/cpatin10/pig/outPeliculasXUsuario' USING PigStorage (',');
