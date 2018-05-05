@@ -3,7 +3,7 @@ agrupacion_peliculas = GROUP registros BY fecha;
 conteo_peliculas = FOREACH agrupacion_peliculas GENERATE group, COUNT(registros) as conteo;
 agrupacion_conteo = GROUP conteo_peliculas ALL;
 
-minimo = MIN(conteo_peliculas.conteo);
+minimo = MIN(agrupacion_conteo.conteo);
 
 /*DUMP minimo;*/
 
