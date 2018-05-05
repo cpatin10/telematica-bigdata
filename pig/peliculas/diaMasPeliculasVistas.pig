@@ -6,3 +6,4 @@ agrupacion_conteo = GROUP conteo_peliculas ALL;
 dia_menor = FOREACH agrupacion_conteo GENERATE conteo_peliculas, MAX(conteo_peliculas.conteo);
 
 DUMP dia_menor;
+STORE dia_menor INTO '/user/cpatin10/pig/outDiaMasPeliculasVistas' USING PigStorage (',');
