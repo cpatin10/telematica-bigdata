@@ -5,4 +5,4 @@ agrupacion_promedio = GROUP promedio_genero ALL;
 dia_menor = FOREACH agrupacion_promedio GENERATE promedio_genero, MIN(promedio_genero.promedio);
 
 DUMP dia_menor;
-/*STORE dia_menor INTO '/user/cpatin10/pig/outDiaMenosPeliculasVistas' USING PigStorage (',');*/
+STORE dia_menor INTO '/user/cpatin10/pig/outDiaMenosPeliculasVistas' USING PigStorage (',');
