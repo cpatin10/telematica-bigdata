@@ -1,17 +1,21 @@
 acciones = LOAD '/user/cpatin10/datasets/empresas.csv' USING PigStorage(',') AS (empresa:chararray, valor:float, fecha:chararray);
 agrupacion_empresa = GROUP acciones BY empresa;
 
+
+menor_valor = MIN(acciones.valor);
+dia_menor = FILTER group BY acciones.valor == menor_valor;
+
 /*
 dia_menor = FOREACH agrupacion_empresa GENERATE group, MIN(acciones.valor);
 */
 
-
+/*
 dia_menor = FOREACH agrupacion_empresa {
     menor_valor = MIN(acciones.valor);
     filtro_menor_valor = FILTER acciones BY acciones.valor == menor_valor;
     GENERATE group, filtro_menor_valor;
 } 
-
+*/
 
 
 DUMP dia_menor;
