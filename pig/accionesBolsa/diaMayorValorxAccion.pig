@@ -5,7 +5,7 @@ agrupacion_empresa = GROUP acciones BY empresa;
 
 
 dia_menor = FOREACH agrupacion_empresa {
-    menor_valor = MIN(valor); 
+    menor_valor = MIN(acciones.valor); 
 
     filtro_menor_valor = FILTER acciones BY valor <= menor_valor;
 
