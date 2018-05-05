@@ -10,9 +10,9 @@ dia_menor = FOREACH agrupacion_empresa {
 } 
 */
 
-/*
+
 DUMP dia_menor;
-*/
+
 
 /*
 foreach_data = FOREACH se_data GENERATE group, AVG(empleados.salario);
