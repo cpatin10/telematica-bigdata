@@ -8,9 +8,8 @@ dia_menor = FOREACH agrupacion_empresa {
 
 
     filtro_menor_valor = FILTER acciones BY valor <= 22.0F;
-    describe filtro_menor_valor;
 
-    GENERATE group, filtro_menor_valor;
+    GENERATE group, filtro_menor_valor.fecha;
 };
 
 DUMP dia_menor;
