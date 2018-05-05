@@ -6,4 +6,4 @@ se_count = FOREACH se_data {
         GENERATE group, COUNT(se_distinct);        
     };
 DUMP se_count;
-
+STORE se_count INTO '/user/cpatin10/pig/SExEmpleado' USING PigStorage (',');
