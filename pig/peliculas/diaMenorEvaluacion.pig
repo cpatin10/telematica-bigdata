@@ -4,9 +4,9 @@ promedio_calificacion = FOREACH agrupacion_dias GENERATE group, AVG(registros.ra
 agrupacion_promedio = GROUP promedio_calificacion ALL;
 dia_menor = FOREACH agrupacion_promedio GENERATE MIN(promedio_calificacion.promedio) as menor_promedio;
 
-describe agrupacion_promedio;
+/*describe agrupacion_promedio;*/
 
-/*DUMP agrupacion_promedio.$0;
+DUMP agrupacion_promedio.promedio_calificacion;
 
 /*
 filtro_menor = FILTER agrupacion_promedio BY promedio_calificacion.promedio == dia_menor.menor_promedio;
