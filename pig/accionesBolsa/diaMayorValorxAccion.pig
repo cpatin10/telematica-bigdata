@@ -9,11 +9,13 @@ dia_menor = FOREACH agrupacion_empresa GENERATE group, MIN(acciones.valor);
 
 dia_menor = FOREACH agrupacion_empresa {
     menor_valor = MIN(acciones.valor);
+    dump menor_valor;
+
     filtro_menor_valor = FILTER agrupacion_empresa BY acciones.valor == menor_valor;
-    dump filtro_menor_valor;
+    /*dump filtro_menor_valor;*/
 
     GENERATE group, menor_valor;
-} 
+};
 
 
 /*
