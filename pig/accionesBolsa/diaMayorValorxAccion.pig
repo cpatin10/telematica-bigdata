@@ -12,7 +12,7 @@ dia_menor = FOREACH agrupacion_empresa {
     GENERATE group, filtro_menor_valor;
 };
 
-describe dia_menor;
+
 DUMP dia_menor;
 
 
