@@ -2,11 +2,11 @@ registros = LOAD '/user/cpatin10/datasets/peliculas.csv' USING PigStorage(',') A
 agrupacion_dias = GROUP registros BY fecha;
 promedio_calificacion = FOREACH agrupacion_dias GENERATE group, AVG(registros.rating) as promedio;
 agrupacion_promedio = GROUP promedio_calificacion ALL;
-dia_menor = FOREACH agrupacion_promedio GENERATE MIN(promedio_calificacion.promedio) as menor_promedio;
+dia_menor = FOREACH agrupacion_promedio GENERATE promedio_calificacion, MIN(promedio_calificacion.promedio);
 
 /*describe agrupacion_promedio;*/
 
-DUMP agrupacion_promedio.promedio_calificacion;
+DUMP dia_menor;
 
 /*
 filtro_menor = FILTER agrupacion_promedio BY promedio_calificacion.promedio == dia_menor.menor_promedio;
