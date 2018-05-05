@@ -2,7 +2,10 @@ registros = LOAD '/user/cpatin10/datasets/peliculas.csv' USING PigStorage(',') A
 agrupacion_peliculas = GROUP registros BY fecha;
 conteo_peliculas = FOREACH agrupacion_peliculas GENERATE group, COUNT(registros) as conteo;
 agrupacion_conteo = GROUP conteo_peliculas ALL;
-dia_menor = FOREACH agrupacion_conteo GENERATE conteo_peliculas.fecha, MIN(conteo_peliculas.conteo);
+
+DUMP conteo_peliculas;
+
+dia_menor = FOREACH agrupacion_conteo GENERATE conteo_peliculas, MIN(conteo_peliculas.conteo);
 
 
 DUMP dia_menor;
