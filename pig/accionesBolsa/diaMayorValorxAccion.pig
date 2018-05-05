@@ -14,7 +14,7 @@ dia_menor = FOREACH agrupacion_empresa {
 } 
 */
 
-dia_menor = FOREACH (FILTER agrupacion_empresa BY acciones.valor <= 22.0) GENERATE group, acciones.valor;
+dia_menor = FOREACH (FILTER agrupacion_empresa BY acciones.valor <= 22.0f) GENERATE group, acciones.valor;
 
 DUMP dia_menor;
 
