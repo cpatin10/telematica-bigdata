@@ -2,7 +2,7 @@ empleados = LOAD '/user/cpatin10/datasets/empleados.csv' USING PigStorage(',') A
 se_data = GROUP empleados BY Id_empleado;
 
 se_count = FOREACH se_data {
-        se_distinct = DISTINCT se_data.SE;
+        se_distinct = DISTINCT empleados.SE;
         GENERATE group, COUNT(se_distinct);        
     };
 DUMP se_count;
