@@ -1,8 +1,8 @@
-from pyspark.sql.functions import col, udf
+from pyspark.sql.functions import col, udf, struct
 from pyspark.sql.types import *
 from pyspark.sql import *
 
-import struct
+import re
 
 #airlinesFile = sc.textFile("hdfs:///user/cpatin10/datasets/airlines.csv")
 airlinesFile = spark.read.load("hdfs:///user/cpatin10/datasets/airlines.csv", format="csv", header=False)
