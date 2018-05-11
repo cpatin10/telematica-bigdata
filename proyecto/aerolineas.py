@@ -5,8 +5,9 @@ from pyspark.sql import *
 import re
 
 #airlinesFile = sc.textFile("hdfs:///user/cpatin10/datasets/airlines.csv")
-airlinesFile = spark.read.load("hdfs:///user/cpatin10/datasets/airlines.csv", format="csv", header=False)
-#airlinesFile = spark.read.load("hdfs:///user/cpatin10/datasets/airlines.csv", format="csv", header=True)
+airlinesFile = spark.read.load("hdfs:///user/cpatin10/datasets/airlines.csv", format="csv", header=True)
+
+#airlinesFile.show(10)
 
 def cleanup_text(record):
     text = record[8]
@@ -45,5 +46,5 @@ def cleanup_text(record):
 udf_cleantext = udf(cleanup_text , ArrayType(StringType()))
 clean_text = airlinesFile.withColumn("words", udf_cleantext(struct([airlinesFile[x] for x in airlinesFile.columns])))
 
-clean_text.saveAsTextFile("hdfs:///user/cpatin10/spark-project/tests/cleaning")
+clean_text.show(10)
 
