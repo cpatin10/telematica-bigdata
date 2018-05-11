@@ -2,7 +2,7 @@ airlinesFile = sc.textFile("hdfs:///user/cpatin10/datasets/airlines.csv")
 
 def cleanup_text(record):
     text = record[8]
-    uid = record[9]
+    # uid = record[9]
     words = text.split()
         
     # Default list of Stopwords
@@ -36,6 +36,6 @@ def cleanup_text(record):
     text_out = [word.lower() for word in text_out if len(word)>2 and word.lower() not in stopwords]     # Remove stopwords and words under X length
     return text_out
      
-# udf_cleantext = udf(cleanup_text , ArrayType(StringType()))
-# clean_text = rawdata.withColumn("words", udf_cleantext(struct([rawdata[x] for x in rawdata.columns])))
+udf_cleantext = udf(cleanup_text , ArrayType(StringType()))
+clean_text = airlinesFile.withColumn("words", udf_cleantext(struct([airlinesFile[x] for x in airlinesFile.columns])))
 
