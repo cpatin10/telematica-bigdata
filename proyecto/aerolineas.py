@@ -39,3 +39,5 @@ def cleanup_text(record):
 udf_cleantext = udf(cleanup_text , ArrayType(StringType()))
 clean_text = airlinesFile.withColumn("words", udf_cleantext(struct([airlinesFile[x] for x in airlinesFile.columns])))
 
+clean_text.saveAsTextFile("hdfs:///user/cpatin10/spark-project/tests/cleaning")
+
