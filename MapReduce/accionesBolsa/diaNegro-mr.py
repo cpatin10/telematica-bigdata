@@ -7,8 +7,9 @@ class leastValueDay(MRJob):
     def steps(self):
         return[
             MRStep(mapper = self.mapper1,
-                combiner = self.combiner1),
-            MRStep(reducer = self.reducer1)
+                reducer = self.reducer1),
+            MRStep(reducer = self.reducer2),            
+            MRStep(reducer = self.reducer3)
         ]
 
     def mapper1(self, _, line):
@@ -16,7 +17,7 @@ class leastValueDay(MRJob):
         value = float(parameters[-2])
         yield parameters[0], (value, parameters[-1])
 
-    def combiner1(self, key, values):
+    def reducer1(self, key, values):
         leastValue = sys.maxint
         leastValueDate = ""
         for value in values:
@@ -25,9 +26,17 @@ class leastValueDay(MRJob):
                 leastValueDate = value[1]
         yield leastValueDate, 1
 
-    def reducer1(self, key, values):
-        yield key, sum(values)
+    def reducer2(self, key, values):
+        yield None, (key, sum(values))
 
+    def reducer3(self, _, values):
+        darkDayValue = 0
+        darkDay = ""
+        for value in values:
+            if value[1] > darkDayValue:
+                darkDayValue = value[1]
+                darkDay = value[0]
+        yield darkDay, darkDayValue
     
 
 if __name__ == '__main__':
