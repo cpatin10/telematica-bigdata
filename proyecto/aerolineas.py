@@ -1,8 +1,16 @@
+# Desarrollado en base a https://community.hortonworks.com/articles/84781/spark-text-analytics-uncovering-data-driven-topics.html
+# Referencias 
+#   https://spark.apache.org/docs/2.2.0/ml-features.html#countvectorizer
+
+
+import re
+
 from pyspark.sql.functions import col, udf, struct
 from pyspark.sql.types import *
 from pyspark.sql import *
 
-import re
+from pyspark.ml.feature import CountVectorizer
+from pyspark.ml.feature import HashingTF, IDF, Tokenizer
 
 #airlinesFile = sc.textFile("hdfs:///user/cpatin10/datasets/airlines.csv")
 airlinesFile = spark.read.load("hdfs:///user/cpatin10/datasets/airlines.csv", format="csv", header=True)
@@ -46,5 +54,19 @@ def cleanup_text(record):
 udf_cleantext = udf(cleanup_text , ArrayType(StringType()))
 clean_text = airlinesFile.withColumn("words", udf_cleantext(struct([airlinesFile[x] for x in airlinesFile.columns])))
 
-clean_text.show(10)
+#clean_text.show(10)
 
+# #hashingTF = HashingTF(inputCol="words", outputCol="rawFeatures", numFeatures=20)
+# #featurizedData = hashingTF.transform(clean_text)
+     
+# # Term Frequency Vectorization  - Option 2 (CountVectorizer)    : 
+cv = CountVectorizer(inputCol="words", outputCol="rawFeatures", vocabSize = 1000)
+cvmodel = cv.fit(clean_text)
+featurizedData = cvmodel.transform(clean_text)
+     
+vocab = cvmodel.vocabulary
+vocab_broadcast = sc.broadcast(vocab)
+     
+idf = IDF(inputCol="rawFeatures", outputCol="features")
+idfModel = idf.fit(featurizedData)
+rescaledData = idfModel.transform(featurizedData) # TFIDF
